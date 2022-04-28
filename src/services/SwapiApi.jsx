@@ -20,8 +20,8 @@ const getFilm = async (id) => {
 }
 
 // Get ALL characters
-const getCharacters = async () => {
-	const res = await axios.get(`${BASE_URL}/people`)
+const getCharacters = async (page) => {
+	const res = await axios.get(`${BASE_URL}/people/?page=${page}`)
 	return res.data
 }
 
