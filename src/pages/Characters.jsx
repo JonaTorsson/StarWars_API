@@ -68,21 +68,6 @@ const Characters = () => {
 						>Next Page</Button>
 					</div>
 				</div>
-				{/* <div className="d-flex justify-content-between align-items-center mt-4">     
-                        <Button
-                            disabled={page === 1}
-                            onClick={() => setPage(prevValue => prevValue - 1)}
-                            variant="primary"
-                        >Previous Page</Button>
-                   
-                    <div className="page">{page}</div>
-                   
-                        <Button
-                            onClick={() => setPage(prevValue => prevValue + 1)}
-                            disabled={!characters.next}
-                            variant="primary"
-                        >Next Page</Button>
-                    </div> */}
 			</Container>
 		</>
 	)
