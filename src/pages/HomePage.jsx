@@ -13,7 +13,7 @@ const HomePage = () => {
 					<Button 
 						className="btn" 
 						as={Link} 
-						to="/characters">
+						to="/people">
 						Characters
 					</Button>
 					<Button 

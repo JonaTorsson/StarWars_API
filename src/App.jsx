@@ -5,6 +5,7 @@ import Films from "./pages/Films"
 import Characters from "./pages/Characters"
 import SingleFilmPage from "./pages/SingleFilmPage"
 import SingleCharacterPage from "./pages/SingleCharacterPage"
+import './App.css'
 
 import 'bootstrap/dist/css/bootstrap.css'
 
@@ -16,7 +17,7 @@ const App = () => {
 		<Routes>
 			<Route path="/" element	={< HomePage />} />
 			<Route path="/films" element	={< Films />} />
-			<Route path="/characters" element	={< Characters />} />
+			<Route path="/people" element	={< Characters />} />
 			<Route path="/films/:id" element	={< SingleFilmPage />} />
 			<Route path="/people/:id" element	={< SingleCharacterPage />} />
 		</Routes>

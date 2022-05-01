@@ -5,15 +5,17 @@ import { Link } from "react-router-dom"
 import { getIdFromUrl } from "../helpers/helper"
 
 const Characters = () => {
-	const [characters, setCharacters] = useState()
+	const [characters, setCharacters] = useState("")
 	const [page, setPage] = useState(1)
-
-	const getCharacters = async (page) => {
-		const data = await SwapiApi.getCharacters(page)
-		setCharacters(data)
-	}
+	const [loading, setLoadning] =useState(false)
 
 	useEffect(() => {
+		const getCharacters = async (page) => {
+			setLoadning(true)
+		const data = await SwapiApi.getCharacters(page)
+		setCharacters(data)
+		setLoadning(false)
+	}
 		getCharacters(page)
 	}, [page])
 	return (
@@ -22,6 +24,9 @@ const Characters = () => {
 				<h1 className="text-center mt-3 mb-3">Films</h1>
 
 				<Row xs={1} md={2} lg={3}>
+
+					{loading && <p>Loading......</p>}
+
 					{characters && characters.results.map((person, index) => (
 						<Col key={index}>
 							<Card className="mb-4"> 
@@ -54,17 +59,17 @@ const Characters = () => {
 				<div className="d-flex justify-content-between align-items-center mt-4">
 					<div className="prev">
 						<Button
-							disabled={page === 1}
+							disabled={!characters.previous}
 							onClick={() => setPage(prevValue => prevValue - 1)}
 							variant="primary"
 						>Previous Page</Button>
 					</div>
-					<div className="page">{page + 1}</div>
+					<div className="page">{page}</div>
 					<div className="next">
 						<Button
-							disabled={!Characters.next}
-							onClick={() => setPage(prevValue => prevValue + 1)}
-							variant="primary"
+							disabled={!characters.next}
+                            onClick={() => setPage(prevValue => prevValue + 1)}
+                            variant="primary"
 						>Next Page</Button>
 					</div>
 				</div>
