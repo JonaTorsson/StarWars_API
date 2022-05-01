@@ -10,7 +10,7 @@ const SingleFilmPage = () => {
 	const { id } = useParams()
 	const navigate = useNavigate()
 
-	const getFilm = async () => {
+	const getFilm = async (id) => {
 		const data = await SwapiApi.getFilm(id)
 		setFilm(data)
 		setCharacters(data.characters)
