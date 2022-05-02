@@ -1,15 +1,14 @@
 import Button from 'react-bootstrap/Button'
-import Container from 'react-bootstrap/Container'
 import { Link } from 'react-router-dom'
+import '../App.css'
 
 const HomePage = () => {
 	return (
 
-		<Container>
-			<h1>HomePage</h1>
+		<div>
+			<h1 className="header">May The Force Be Yith You</h1>
 
 			<div className="btns">
-					<p>text text text</p>
 					<Button 
 						className="btn" 
 						as={Link} 
@@ -17,13 +16,13 @@ const HomePage = () => {
 						Characters
 					</Button>
 					<Button 
-						className="btn" 
+						className="btn mt-3 p-2" 
 						as={Link} 
 						to="/films">
 						Films
 					</Button>
 			</div>
-		</Container>
+		</div>
 	)
 }
 

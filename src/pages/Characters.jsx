@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import SwapiApi from "../services/SwapiApi"
-import { Card, Row, Col, ListGroup, Container, Button } from "react-bootstrap"
+import { Card, Row, Col, ListGroup, Container, Button, Spinner } from "react-bootstrap"
 import { Link } from "react-router-dom"
 import { getIdFromUrl } from "../helpers/helper"
 
@@ -12,10 +12,10 @@ const Characters = () => {
 	useEffect(() => {
 		const getCharacters = async (page) => {
 			setLoadning(true)
-		const data = await SwapiApi.getCharacters(page)
-		setCharacters(data)
-		setLoadning(false)
-	}
+			const data = await SwapiApi.getCharacters(page)
+			setCharacters(data)
+			setLoadning(false)
+		}
 		getCharacters(page)
 	}, [page])
 	return (
@@ -25,7 +25,7 @@ const Characters = () => {
 
 				<Row xs={1} md={2} lg={3}>
 
-					{loading && <p>Loading......</p>}
+					{loading && <Spinner animation="border" variant="danger" />}
 
 					{characters && characters.results.map((person, index) => (
 						<Col key={index}>
@@ -56,7 +56,7 @@ const Characters = () => {
 						</Col>
 					))}
 				</Row>
-				<div className="d-flex justify-content-between align-items-center mt-4">
+				<div className="d-flex justify-content-between align-items-center mt-3 bg-dark mb-3">
 					<div className="prev">
 						<Button
 							disabled={!characters.previous}
@@ -64,12 +64,15 @@ const Characters = () => {
 							variant="primary"
 						>Previous Page</Button>
 					</div>
+
+					{loading && <Spinner animation="border" variant="danger" />}
+
 					<div className="page">{page}</div>
 					<div className="next">
 						<Button
 							disabled={!characters.next}
-                            onClick={() => setPage(prevValue => prevValue + 1)}
-                            variant="primary"
+							onClick={() => setPage(prevValue => prevValue + 1)}
+							variant="primary"
 						>Next Page</Button>
 					</div>
 				</div>

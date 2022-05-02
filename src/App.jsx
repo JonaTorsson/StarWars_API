@@ -6,7 +6,6 @@ import Characters from "./pages/Characters"
 import SingleFilmPage from "./pages/SingleFilmPage"
 import SingleCharacterPage from "./pages/SingleCharacterPage"
 import './App.css'
-
 import 'bootstrap/dist/css/bootstrap.css'
 
 const App = () => {

@@ -1,15 +1,19 @@
 import SwapiAPI from '../services/SwapiApi'
 import { useState, useEffect } from 'react'
-import { Button, Row, Card, Col, ListGroup, Container} from 'react-bootstrap'
+import { Button, Row, Card, Col, ListGroup, Container, Spinner} from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
 
 const Films = () => {
 	const [films, setFilms] = useState("")
+	const [loading, setLoadning] =useState(false)
+
 
 	const getFilms = async () => {
+		setLoadning(true)
 		const data = await SwapiAPI.getFilms()
 		setFilms(data)
+		setLoadning(false)
 	}
 
 	useEffect(() => {
@@ -22,6 +26,7 @@ const Films = () => {
 				<h1 className="text-center mt-3 mb-3">Films</h1>
 				
 				<Row xs={1} md={2} lg={3}>
+					{loading && <Spinner animation="border" variant="danger" />}
 					{films && films.results.map((films, index) => (
 						<Col key={index}>
 							<Card className="mb-4"> 

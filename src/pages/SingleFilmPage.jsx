@@ -2,28 +2,35 @@ import { useState, useEffect } from "react"
 import { useParams, Link, useNavigate } from 'react-router-dom'
 import { getIdFromUrl } from '../helpers/helper'
 import SwapiApi from "../services/SwapiApi"
-import { Button, Card, Row, Col, Container} from "react-bootstrap"
+import { Button, Card, Row, Col, Container, Spinner} from "react-bootstrap"
 
 const SingleFilmPage = () => {
 	const [film, setFilm] = useState([])
 	const [characters, setCharacters] = useState([])
 	const { id } = useParams()
 	const navigate = useNavigate()
+	const [loading, setLoadning] =useState(false)
 
-	const getFilm = async (id) => {
-		const data = await SwapiApi.getFilm(id)
-		setFilm(data)
-		setCharacters(data.characters)
-	}
+	
 
 	useEffect(() => {
+		const getFilm = async (id) => {
+			setLoadning(true)
+			const data = await SwapiApi.getFilm(id)
+			setFilm(data)
+			setCharacters(data.characters)
+			setLoadning(false)
+		}
 		getFilm(id)
 	}, [id])
 
 	return (
 		<>
+			
 			<Container className="mt-5 pt-4">
+				{loading && <Spinner animation="border" variant="danger" />}
 				<Row>
+					
 					<Card className="card">
 						<Card.Header>{film.title}</Card.Header>
 						<Card.Body>
